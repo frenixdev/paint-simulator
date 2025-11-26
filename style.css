@@ -97,3 +97,30 @@ main{
 .colors:nth-child(2){
   background-color: #000;
 }
+
+
+@media (max-width: 32rem){
+  *{
+    user-select: none;
+  }
+  *#color-pannel{
+    width: 97%;
+    grid-template-columns: repeat(auto-fit, minmax(30px, 1fr));
+  }
+
+#canvas{
+  height: 400px;
+}
+  #cursor{
+    display: none;
+  }
+  main{
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    padding: 1rem .5rem;
+  }
+  #canvas{
+    width: 95%;
+  }
+  
+}
