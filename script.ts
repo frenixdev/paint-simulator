@@ -1,10 +1,20 @@
 const cursor = document.querySelector("#cursor") as HTMLElement;
 const pannel = document.querySelector("#color-pannel") as HTMLElement;
 const canvas = document.querySelector("#canvas") as HTMLElement;
+
+
+//defining variables
+
 let colorBoxes: NodeListOf<HTMLElement>;
-
-let selectedColor: string = "#000";
-
+const skeletonArray: string[] = [
+  "car",
+  "home",
+  "indicator",
+  "airplane",
+  "building",
+];
+let selectedColor: string = "#fff";
+let curIndex = 0;
 const colors: string[] = [
   "#FFB5E8",
   "#B5EAD7",
@@ -29,7 +39,6 @@ const colors: string[] = [
   "#E0F2FF",
   "#A7D8FF",
   "#4FA8FF",
-  "#006EE6",
   "#003A73",
   "#FF7F50",
 ];
@@ -44,22 +53,31 @@ function addColorsToPannel() {
   });
   getColors();
 }
+async function loadSVG() {
+  const res = await fetch(`./src/svg/${skeletonArray[curIndex]}.svg`);
+  canvas.innerHTML = await res.text();
+}
 
 function getColors() {
   colorBoxes = document.querySelectorAll<HTMLElement>(".colors");
 }
 
-function randomIndex(length: number): number {
-  return Math.floor(Math.random() * length);
-}
-function removeActiveClass() {
-  colorBoxes.forEach((color) => color.classList.remove("active"));
-}
-
 function setActiveClass(target: HTMLElement) {
-  removeActiveClass();
+  colorBoxes.forEach((color) => color.classList.remove("active"));
   target.classList.add("active");
 }
+
+//next prev button logic
+const increaseIndex =()=> {
+  curIndex = curIndex === skeletonArray.length -1 ? 0 : curIndex++;
+  loadSVG();
+}
+function decreaseIndex() {
+  curIndex = curIndex === 0 ? skeletonArray.length - 1 : curIndex--;
+  loadSVG();
+}
+
+//set cursor color
 
 function setCursorColor() {
   if (selectedColor === "#000") {
@@ -68,6 +86,12 @@ function setCursorColor() {
     cursor.style.color = "#000";
   }
 }
+
+//all the event lisenerts
+//all the event lisenerts
+//all the event lisenerts
+//all the event lisenerts
+//all the event lisenerts
 canvas.addEventListener("click", (event) => {
   const target = event.target as HTMLElement;
   console.log(target);
@@ -75,31 +99,30 @@ canvas.addEventListener("click", (event) => {
 });
 
 window?.addEventListener("mousemove", (e) => {
+  const target = e.target as HTMLElement;
+  if(target.id === "next" || target.id === "prev" || target.closest("#color-pannel")){
+    cursor.style.display = "none"
+  }else{
+    cursor.style.display = "block"
+  }
   const x: number = e.clientX;
   const y: number = e.clientY;
   cursor.style.top = `${y}px`;
   cursor.style.left = `${x}px`;
 });
 
-pannel.addEventListener("mouseenter", () => {
-  cursor.style.display = "none";
-});
-pannel.addEventListener("mouseleave", () => {
-  cursor.style.display = "block";
-});
 pannel.addEventListener("click", (e) => {
   const target = e.target as HTMLElement;
   const clr = target.getAttribute("data-color");
   console.log(clr);
-
   if (clr) {
     selectedColor = clr;
     setActiveClass(target);
-    // setCursorColor();
   }
 });
 
-// canvas.addEventListener("mouseleave", ()=>{
-//   cursor.style.color = "#000"
-// })
+
+
+// manually calling functions
 addColorsToPannel();
+loadSVG();

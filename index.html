@@ -14,13 +14,17 @@
   <body>
     <main>
       <i class="ri-paint-fill" id="cursor"></i>
-      <section id="canvas">
- 
+
+      <section id="canvas-wrapper">
+        <div id="navigate">
+          <button id="prev" onclick="decreaseIndex()"><i class="ri-expand-left-line"> </i>Prev</button>
+        <button id="next" onclick="increaseIndex()">Next <i class="ri-expand-right-line"></i></button>
+        </div>
+
+        <div id="canvas"></div>
       </section>
       <section id="color-pannel">
-        
-        <div data-color="#fff" class="colors"></div>
-        <div data-color="#000" class="colors active"></div>
+        <div data-color="#fff" class="colors active"></div>
       </section>
     </main>
   </body>
