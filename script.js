@@ -63,11 +63,13 @@ function setActiveClass(target) {
 }
 //next prev button logic
 const increaseIndex = () => {
-    curIndex = curIndex === skeletonArray.length - 1 ? 0 : curIndex++;
+    console.log(1);
+    curIndex = curIndex === skeletonArray.length - 1 ? 0 : curIndex + 1;
     loadSVG();
 };
 function decreaseIndex() {
-    curIndex = curIndex === 0 ? skeletonArray.length - 1 : curIndex--;
+    console.log(curIndex);
+    curIndex = curIndex === 0 ? skeletonArray.length - 1 : curIndex - 1;
     loadSVG();
 }
 //set cursor color
@@ -91,7 +93,7 @@ canvas.addEventListener("click", (event) => {
 });
 window?.addEventListener("mousemove", (e) => {
     const target = e.target;
-    if (target.id === "next" || target.id === "prev" || target.closest("#color-pannel")) {
+    if (target.id === "next" || target.id === "prev" || target.closest?.("#color-pannel")) {
         cursor.style.display = "none";
     }
     else {
