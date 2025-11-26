@@ -44,6 +44,7 @@ main {
 
 #canvas-wrapper{
   height: 90%;
+  max-height: 600px;
   width: fit-content;
   display: grid;
   place-items: center;
@@ -60,6 +61,7 @@ main {
   align-items: cen;
   justify-content: center;
   gap: 1rem;
+  cursor: pointer   ;
 }
 
 #canvas-wrapper button {
@@ -166,9 +168,6 @@ transform: translateX(-50%);
 .colors:nth-child(1){
   background-color: #fff;
 
-}
-.colors:nth-child(2){
-  background-color: #000;
 }
 
 

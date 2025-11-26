@@ -63,12 +63,10 @@ function setActiveClass(target) {
 }
 //next prev button logic
 const increaseIndex = () => {
-    console.log(1);
     curIndex = curIndex === skeletonArray.length - 1 ? 0 : curIndex + 1;
     loadSVG();
 };
 function decreaseIndex() {
-    console.log(curIndex);
     curIndex = curIndex === 0 ? skeletonArray.length - 1 : curIndex - 1;
     loadSVG();
 }
@@ -88,7 +86,6 @@ function setCursorColor() {
 //all the event lisenerts
 canvas.addEventListener("click", (event) => {
     const target = event.target;
-    console.log(target);
     target.setAttribute("fill", selectedColor);
 });
 window?.addEventListener("mousemove", (e) => {
@@ -107,7 +104,6 @@ window?.addEventListener("mousemove", (e) => {
 pannel.addEventListener("click", (e) => {
     const target = e.target;
     const clr = target.getAttribute("data-color");
-    console.log(clr);
     if (clr) {
         selectedColor = clr;
         setActiveClass(target);
